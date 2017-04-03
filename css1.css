@@ -1,0 +1,10 @@
+p {
+  border: 10px solid black;
+  border-bottom-left-radius: 70px;
+  border-top-right-radius: 70px;
+  background: rgba(0, 0, 0, 0.5);
+  padding-left : 30px;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
