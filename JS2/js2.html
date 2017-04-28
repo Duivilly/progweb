@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS2</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<label>Raio</label>
+	<input type="text" id="raio" placeholder="Informe o raio" value="0">
+	<label>Área</label>
+	<input type="text" id="area" placeholder="Informe a área" value="0">
+	<button id="botao">OK</button>
+	<br>
+	<label>Circunferêcia</label><br>
+	<input type="text" id="circunferecia" placeholder="Resultado" value="0">
+
+	<script type="text/javascript">
+		var raio= document.getElementById('raio');
+		var area= document.getElementById('area');
+		var circun= document.getElementById('circunferecia');
+		var botao= document.getElementById('botao');
+		botao.onclick= function(){
+			area.value= (Math.pow(raio.value,2) * Math.PI).toFixed(2);
+			circun.value= (2*Math.PI*raio.value).toFixed(2);
+		};
+	</script>
+</body>
+</html>
