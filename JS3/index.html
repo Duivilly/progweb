@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS3</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<h1>Um gráfico de barras</h1>
+<label>Informe a altura das barras: </label><br>
+<input id="bar1" class="styleInput">
+<input id="bar2" class="styleInput">
+<input id="bar3" class="styleInput">
+<input id="bar4" class="styleInput">
+<input id="bar5" class="styleInput">
+<br>
+<label>Informe a largura das barras (em pixels)</label><br>
+<input id="wid" class="styleInput">
+<br><br>
+<button id="botao">Desenhar</button>
+<br><br>
+<div class="bar">
+	<div id="graf1"></div>
+	<div id="graf2"></div>
+	<div id="graf3"></div>
+	<div id="graf4"></div>
+	<div id="graf5"></div>
+</div>
+<!-- designer -->
+<style type="text/css">
+	div {
+		float: left;
+	}
+	.bar {
+		background: none;
+	}
+	.styleInput {
+		width: 50px;
+	}
+</style>
+
+<script type="text/javascript">
+	var bar1= document.getElementById('bar1');
+	var bar2= document.getElementById('bar2');
+	var bar3= document.getElementById('bar3');
+	var bar4= document.getElementById('bar4');
+	var bar5= document.getElementById('bar5');
+
+	var wid= document.getElementById('wid');
+
+	var graf1= document.getElementById('graf1');
+	var graf2= document.getElementById('graf2');
+	var graf3= document.getElementById('graf3');
+	var graf4= document.getElementById('graf4');
+	var graf5= document.getElementById('graf5');
+
+	var botao= document.getElementById('botao');
+
+	var itens= new Array();
+
+	botao.onclick= function(){
+		itens.push(bar1.value);
+		itens.push(bar2.value);
+		itens.push(bar3.value);
+		itens.push(bar4.value);
+		itens.push(bar5.value);
+		var maior= 0;
+		for(var i= 0; i < 5; i++){
+			if(parseInt(itens[i]) > maior){
+				maior= parseInt(itens[i]);
+			}
+		}
+		console.log('Maior '+maior);
+
+		console.log('bar1');
+		graf1.style.height= bar1.value+"px";
+		graf1.style.width= wid.value+"px";
+		graf1.style.background= "red";
+		graf1.style.position= "relative";
+		graf1.style.top= (maior-parseInt(bar1.value))+"px";
+		graf1.style.marginLeft= "5px";
+		graf1.style.marginRight= "5px";
+
+		console.log('bar2');
+		graf2.style.height= bar2.value+"px";
+		graf2.style.width= wid.value+"px";
+		graf2.style.background= "red";
+		graf2.style.position= "relative";
+		graf2.style.top= (maior-parseInt(bar2.value))+"px";
+		graf2.style.marginRight= "5px";
+
+		console.log('bar3');
+		graf3.style.height= bar3.value+"px";
+		graf3.style.width= wid.value+"px";
+		graf3.style.background= "red";
+		graf3.style.position= "relative";
+		graf3.style.top= (maior-parseInt(bar3.value))+"px";
+		graf3.style.marginRight= "5px";
+
+		console.log('bar4');
+		graf4.style.height= bar4.value+"px";
+		graf4.style.width= wid.value+"px";
+		graf4.style.background= "red";
+		graf4.style.position= "relative";
+		graf4.style.top= (maior-parseInt(bar4.value))+"px";
+		graf4.style.marginRight= "5px";
+
+		console.log('bar5');
+		graf5.style.height= bar5.value+"px";
+		graf5.style.width= wid.value+"px";
+		graf5.style.background= "red";
+		graf5.style.position= "relative";
+		graf5.style.top= (maior-parseInt(bar5.value))+"px";
+		graf5.style.marginRight= "5px";
+	}
+</script>
+
+</body>
+</html>
