@@ -1,0 +1,3 @@
+A técnica closure é usado para tornar o acesso privado a certos elementos, útil na segurança. Esconder partes da aplicação.
+
+#A função anônima mais interna conhece a variável bazz, o x e o y, ou seja, ela conhece todas as variáveis acima dela que estão dentro de uma função em sequência, as variáveis que estão em funções mais acima não conhece as que estão mais em baixo, isso é closure.
