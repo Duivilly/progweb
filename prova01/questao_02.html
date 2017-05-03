@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Questão02</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<label id="info">Instituto de Computação</label>
+<br><br>
+<button id="adicionar">Adicionar Estilos</button>
+<button id="limpar">Limpar Estilo</button>
+
+<script type="text/javascript">
+	var adicionar= document.getElementById('adicionar');
+	var limpar= document.getElementById('limpar');
+	var info= document.getElementById('info');
+	adicionar.onclick= function(){
+		info.style.color= 'red';
+		info.style.background= 'silver';
+	};
+
+	limpar.onclick= function(){
+		info.style.color= '';
+		info.style.background= '';
+	};
+</script>
+</body>
+</html>
