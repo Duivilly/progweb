@@ -1,0 +1,6 @@
+13. está faltando a tag final do span - colocar a tag final </span>
+6. conteúdo de css está dentro do de javascript - trocar a tag script por style
+20. conteúdo de javascript está dentro de css - trocar a tag style por script 
+#não tem a tag <html></html> e tag <head></head> está dentro do body - separar as tags e coloca-lás dentro da tag html
+3 até 23. conteudo do html está dentro do cabeçalho head 
+
