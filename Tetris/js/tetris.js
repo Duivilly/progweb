@@ -9,7 +9,7 @@
     function createTabuleiro(){
         table= document.createElement("table");
         table.style.backgroundColor= "#FFFACD";
-        table.border= "1";
+        table.border= "0";
         createLinhaTabuleiro();
         createLinhaTabuleiro();
         createLinhaTabuleiro();
@@ -93,12 +93,14 @@
             console.log(coluna);
         }else{
             clearInterval(gameLoop);
-            //init();
+            init();
         }
     }
 
     function createPeca() {
+        table.rows[coluna].cells[controle-1].style.background= "yellow";
         table.rows[coluna].cells[controle].style.background= "yellow";
+        table.rows[coluna].cells[controle+1].style.background= "yellow";
     }
 
     function limpar() {
