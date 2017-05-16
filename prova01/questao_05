@@ -24,3 +24,7 @@ Date:   Wed May 3 16:24:43 2017 -0400
 
 A) É o diretório que está localmente na minha máquina de trabalho, exibe todas as alterações(os documentos) que faço no projeto, mostra os novos documentos que crio que não foram salvos no repositório e mostra os documentos que foram alterados no desenvolvimento.
 B) O repositório local é onde ficam todos os commits que faço e ainda não foi salvo em um servidor, somente no computador. O repositório remoto guarda todos os commits que foram enviados para o servidor remoto, todos os commits ficam acessíveis para os colaboradores(os que trabalham no projeto).
+
+Nota: 2.0
+Logs e conceitos reportados corretamente.
+
