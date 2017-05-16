@@ -32,7 +32,7 @@
     function init() {
         posicao_y_y= 1;
         posicao_x_y= 3;
-        posicao_y_w= 0;
+        posicao_y_w= posicao_y_y;
         posicao_x_w= 0;
         createPeca();
         gameLoop= setInterval(run, 1000/fps);
@@ -48,6 +48,7 @@
         }
         peca.style.top= posicao + "px";
         //caminha
+        posicao_y_y= posicao/20;
         $(document).ready(function(){
             $("table tr:nth-child("+parseInt(posicao_y_y)+") td:nth-child("+parseInt(posicao_x_y)+")").css("background-color", "yellow");
             $("table tr:nth-child("+parseInt(posicao_y_w)+") td:nth-child("+parseInt(posicao_x_w)+")").css("background-color", "white");
