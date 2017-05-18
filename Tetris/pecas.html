@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Peças Tetris</title>
+	<style type="text/css">
+		#h {
+			width: 80px;
+			height: 20px;
+			background-color: orange;
+			position: relative;
+		}
+
+		#q {
+			width: 40px; 
+			height: 40px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#s1 {
+			width: 20px; 
+			height: 40px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#s2 {
+			width: 20px; 
+			height: 40px; 
+			background-color: orange; 
+			position: relative; 
+			top: 20px; 
+			left: 20px;
+		}
+
+		#t1 {
+			width: 60px; 
+			height: 20px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#t2 {
+			width: 20px; 
+			height: 20px; 
+			background-color: orange; 
+			position: relative; 
+			top: 20px; 
+			left: 20px;
+		}
+
+		#l1 {
+			width: 20px; 
+			height: 60px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#l2 {
+			width: 20px; 
+			height: 20px; 
+			background-color: orange; 
+			position: relative; 
+			top: 40px; 
+			left: 20px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="h"></div>
+
+<br>
+
+<div id="t1">
+	<div id="t2"></div>
+</div>
+
+<br><br>
+
+<div id="q"></div>
+
+<br>
+
+<div id="l1">
+	<div id="l2"></div>
+</div>
+
+<br>
+
+<div id="s1">
+	<div id="s2"></div>
+</div>
+
+<br><br>
+
+<button id="up">Up</button>
+<button id="left">Left</button>
+<button id="right">Right</button>
+
+<script type="text/javascript">
+	var h= document.getElementById('h');
+	var up= document.getElementById('up');
+	var left= document.getElementById('left');
+	var right= document.getElementById('right');
+	var controll= 0;
+	var girarH= false;
+	right.onclick= function(){
+		controll= controll + 20;
+		document.querySelector("#h").style.backgroundColor = "red";
+		document.querySelector("#h").style.left = controll+"px";
+
+		document.querySelector("#q").style.backgroundColor = "red";
+		document.querySelector("#q").style.left = controll+"px";
+
+		document.querySelector("#s1").style.backgroundColor = "red";
+		document.querySelector("#s1").style.left = controll+"px";
+		document.querySelector("#s2").style.backgroundColor = "red";
+
+		document.querySelector("#t1").style.backgroundColor = "red";
+		document.querySelector("#t1").style.left = controll+"px";
+		document.querySelector("#t2").style.backgroundColor = "red";
+
+		document.querySelector("#l1").style.backgroundColor = "red";
+		document.querySelector("#l1").style.left = controll+"px";
+		document.querySelector("#l2").style.backgroundColor = "red";
+		console.log('.');
+	}
+
+	left.onclick= function(){
+		controll= controll - 20;
+		document.querySelector("#h").style.backgroundColor = "red";
+		document.querySelector("#h").style.left = controll+"px";
+
+		document.querySelector("#q").style.backgroundColor = "red";
+		document.querySelector("#q").style.left = controll+"px";
+
+		document.querySelector("#s1").style.backgroundColor = "red";
+		document.querySelector("#s1").style.left = controll+"px";
+		document.querySelector("#s2").style.backgroundColor = "red";
+
+		document.querySelector("#t1").style.backgroundColor = "red";
+		document.querySelector("#t1").style.left = controll+"px";
+		document.querySelector("#t2").style.backgroundColor = "red";
+
+		document.querySelector("#l1").style.backgroundColor = "red";
+		document.querySelector("#l1").style.left = controll+"px";
+		document.querySelector("#l2").style.backgroundColor = "red";
+		console.log('.');
+	}
+
+	up.onclick= function(){
+		document.querySelector("#h").style.backgroundColor = "red";
+		if(girarH){
+			document.querySelector("#h").style.width = "80px";
+			document.querySelector("#h").style.height = "20px";
+			girarH= false;
+		}else{
+			document.querySelector("#h").style.width = "20px";
+			document.querySelector("#h").style.height = "80px";
+			girarH= true;
+		}
+		console.log('.');
+	}
+
+</script>
+</body>
+</html>

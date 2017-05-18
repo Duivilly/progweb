@@ -1,20 +1,14 @@
-/*
 #tabuleiro div {
-    background-color: gray;
-    width: 20px;
-    height: 20px;
+    background-color: "#FFFACD";
+    width: 500px;
+    height: 500px;
     position: absolute;
 }
 
-#proxima-peca tr:nth-child(1) td:nth-child(1) {
-    background-color: #4B0082;
+#proxima-peca div {
+    background-color: orange;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    left: 4px;
 }
-
-#proxima-peca tr:nth-child(1) td:nth-child(2) {
-    background-color: #4B0082;
-}
-
-#proxima-peca tr:nth-child(1) td:nth-child(3) {
-    background-color: #4B0082;
-}
-*/
