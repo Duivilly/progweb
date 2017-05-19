@@ -1,14 +1,71 @@
 #tabuleiro div {
     background-color: "#FFFACD";
-    width: 500px;
-    height: 500px;
     position: absolute;
+    text-align: center;
 }
 
-#proxima-peca div {
-    background-color: orange;
-    width: 24px;
-    height: 24px;
-    position: relative;
-    left: 4px;
+#proxima-peca {
+	position: absolute;
+}
+
+#I {
+	width: 80px;
+	height: 20px;
+	background-color: orange;
+	position: absolute;
+}
+
+#Q {
+	width: 40px; 
+	height: 40px; 
+	background-color: orange;
+	position: absolute;
+}
+
+#S {
+	width: 20px; 
+	height: 40px; 
+	background-color: orange;
+	position: absolute;
+}
+
+#SS {
+	width: 20px; 
+	height: 40px; 
+	background-color: orange; 
+	position: absolute; 
+	top: 20px; 
+	left: 20px;
+}
+
+#T {
+	width: 60px; 
+	height: 20px; 
+	background-color: orange;
+	position: absolute;
+}
+
+#TT {
+	width: 20px; 
+	height: 20px; 
+	background-color: orange; 
+	position: absolute; 
+	top: 20px; 
+	left: 20px;
+}
+
+#L {
+	width: 20px; 
+	height: 60px; 
+	background-color: orange;
+	position: absolute;
+}
+
+#LL {
+	width: 20px; 
+	height: 20px; 
+	background-color: orange; 
+	position: absolute; 
+	top: 40px; 
+	left: 20px;
 }
