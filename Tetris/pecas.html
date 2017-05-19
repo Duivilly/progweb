@@ -106,6 +106,12 @@
 	var right= document.getElementById('right');
 	var controll= 0;
 	var girarH= false;
+	var girarS1= true;
+	var girarS2= true;
+	var girarL1= true;
+	var girarL2= [true,false,false,false];
+	var girarT1= true;
+	var girarT2= [true,false,false,false];
 	right.onclick= function(){
 		controll= controll + 20;
 		document.querySelector("#h").style.backgroundColor = "red";
@@ -151,7 +157,14 @@
 	}
 
 	up.onclick= function(){
-		document.querySelector("#h").style.backgroundColor = "red";
+		document.querySelector("#h").style.backgroundColor = "yellow";
+		document.querySelector("#q").style.backgroundColor = "red";
+		document.querySelector("#s1").style.backgroundColor = "black";
+		document.querySelector("#s2").style.backgroundColor = "black";
+		document.querySelector("#l1").style.backgroundColor = "green";
+		document.querySelector("#l2").style.backgroundColor = "green";
+
+		//girar h
 		if(girarH){
 			document.querySelector("#h").style.width = "80px";
 			document.querySelector("#h").style.height = "20px";
@@ -161,7 +174,96 @@
 			document.querySelector("#h").style.height = "80px";
 			girarH= true;
 		}
-		console.log('.');
+
+		//girar s
+		if(girarS2){
+			document.querySelector("#s2").style.width = "40px";
+			document.querySelector("#s2").style.height = "20px";
+			girarS2= false;
+		}else{
+			document.querySelector("#s2").style.width = "20px";
+			document.querySelector("#s2").style.height = "40px";
+			girarS2= true;
+		}
+
+		if(girarS1){
+			document.querySelector("#s1").style.width = "40px";
+			document.querySelector("#s1").style.height = "20px";
+			girarS1= false;
+		}else{
+			document.querySelector("#s1").style.width = "20px";
+			document.querySelector("#s1").style.height = "40px";
+			girarS1= true;
+		}
+
+		//girar l
+		if(girarL1){
+			document.querySelector("#l1").style.width = "60px";
+			document.querySelector("#l1").style.height = "20px";
+			//document.querySelector("#l1").style.top = "-10px";//static
+			girarL1= false;
+		}else{
+			document.querySelector("#l1").style.width = "20px";
+			document.querySelector("#l1").style.height = "60px";
+			//document.querySelector("#l1").style.top = "10px";//static
+			girarL1= true;
+		}
+
+		if(girarL2[0]){
+			document.querySelector("#l2").style.top = "20px";
+			document.querySelector("#l2").style.left = "0px";
+			girarL2[0]= false;
+			girarL2[1]= true;
+		}else if(girarL2[1]){
+			document.querySelector("#l2").style.top = "0px";
+			document.querySelector("#l2").style.left = "-20px";
+			girarL2[1]= false;
+			girarL2[2]= true;
+		}else if(girarL2[2]){
+			document.querySelector("#l2").style.top = "-20px";
+			document.querySelector("#l2").style.left = "40px";
+			girarL2[2]= false;
+			girarL2[3]= true;
+		}else if(girarL2[3]){
+			document.querySelector("#l2").style.top = "40px";
+			document.querySelector("#l2").style.left = "20px";
+			girarL2[3]= false;
+			girarL2[0]= true;
+		}
+
+		//girar t
+		if(girarT1){
+			document.querySelector("#t1").style.width = "20px";
+			document.querySelector("#t1").style.height = "60px";
+			girarT1= false;
+		}else{
+			document.querySelector("#t1").style.width = "60px";
+			document.querySelector("#t1").style.height = "20px";
+			girarT1= true;
+		}
+
+		if(girarT2[0]){
+			document.querySelector("#t2").style.top = "20px";
+			document.querySelector("#t2").style.left = "-20px";
+			girarT2[0]= false;
+			girarT2[1]= true;
+		}else if(girarT2[1]){
+			document.querySelector("#t2").style.top = "-20px";
+			document.querySelector("#t2").style.left = "20px";
+			girarT2[1]= false;
+			girarT2[2]= true;
+		}else if(girarT2[2]){
+			document.querySelector("#t2").style.top = "20px";
+			document.querySelector("#t2").style.left = "20px";
+			girarT2[2]= false;
+			girarT2[3]= true;
+		}else if(girarT2[3]){
+			document.querySelector("#t2").style.top = "20px";
+			document.querySelector("#t2").style.left = "20px";
+			girarT2[3]= false;
+			girarT2[0]= true;
+		}
+		console.log(girarT2);
 	}
 
 </script>
