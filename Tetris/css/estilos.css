@@ -1,38 +1,49 @@
-#tabuleiro div {
-    background-color: "#FFFACD";
+#e tr:nth-child(1) td:nth-child(4){
     position: absolute;
-    text-align: center;
+    background-color: #D3D3D3;
+}
+
+#tabuleiro div{
+    position: absolute;
+    background-color: #D3D3D3;
+}
+
+#block tr:nth-child(1) td:nth-child(4) {
+    background-color: #D3D3D3;
 }
 
 #proxima-peca {
-	position: absolute;
+	position: relative;
+	background-color: #D3D3D3;
+	width: 100px;
+	height: 60px;
 }
 
 #I {
 	width: 80px;
 	height: 20px;
-	background-color: orange;
+	background-color: #556B2F;
 	position: absolute;
 }
 
 #Q {
 	width: 40px; 
 	height: 40px; 
-	background-color: orange;
+	background-color: #556B2F;
 	position: absolute;
 }
 
 #S {
 	width: 20px; 
 	height: 40px; 
-	background-color: orange;
+	background-color: #556B2F;
 	position: absolute;
 }
 
 #SS {
 	width: 20px; 
 	height: 40px; 
-	background-color: orange; 
+	background-color: #556B2F; 
 	position: absolute; 
 	top: 20px; 
 	left: 20px;
@@ -41,14 +52,14 @@
 #T {
 	width: 60px; 
 	height: 20px; 
-	background-color: orange;
+	background-color: #556B2F;
 	position: absolute;
 }
 
 #TT {
 	width: 20px; 
 	height: 20px; 
-	background-color: orange; 
+	background-color: #556B2F; 
 	position: absolute; 
 	top: 20px; 
 	left: 20px;
@@ -57,14 +68,14 @@
 #L {
 	width: 20px; 
 	height: 60px; 
-	background-color: orange;
+	background-color: #556B2F;
 	position: absolute;
 }
 
 #LL {
 	width: 20px; 
 	height: 20px; 
-	background-color: orange; 
+	background-color: #556B2F; 
 	position: absolute; 
 	top: 40px; 
 	left: 20px;

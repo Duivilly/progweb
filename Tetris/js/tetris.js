@@ -32,22 +32,32 @@
     function createTabuleiro(){
         table= document.createElement("table");
         //cor dos blocos do tabuleiro
-        table.style.backgroundColor= "#FFFACD";
+        table.style.backgroundColor= "#5F9EA0";
         //borda da tabela
-        table.border= "0";
+        table.border= "1";
+        createLinhaTabuleiro();
+        createLinhaTabuleiro();
+        createLinhaTabuleiro();
+        createLinhaTabuleiro(); 
         createLinhaTabuleiro();
         createLinhaTabuleiro();
         createLinhaTabuleiro();
         createLinhaTabuleiro();
         createLinhaTabuleiro();
+        createLinhaTabuleiro(); 
         createLinhaTabuleiro();
-        
+        createLinhaTabuleiro();
         document.getElementById("tabuleiro").appendChild(table);
     }
 
     //cria as linhas da tabela
     function createLinhaTabuleiro(){
         tr= document.createElement("tr");
+        createColunaTabuleiro();
+        createColunaTabuleiro();
+        createColunaTabuleiro();
+        createColunaTabuleiro();
+        createColunaTabuleiro();
         createColunaTabuleiro();
         createColunaTabuleiro();
         createColunaTabuleiro();
@@ -62,8 +72,8 @@
     function createColunaTabuleiro(){
         td= document.createElement("td");
         //tamanho de cada bloco do tabuleiro
-        td.width= "80";
-        td.height= "80";
+        td.width= "20";
+        td.height= "20";
         tr.appendChild(td);
     }
 
@@ -73,7 +83,7 @@
         if (e.keyCode == '38') {
             //girar I
             if(peca.id == "I"){
-                document.querySelector("#I").style.backgroundColor = "yellow";
+                document.querySelector("#I").style.backgroundColor = "#B22222";
                 if(girarI){
                     document.querySelector("#I").style.width = "80px";
                     document.querySelector("#I").style.height = "20px";
@@ -87,8 +97,8 @@
 
             //girar S
             if(peca.id == "S"){
-                document.querySelector("#S").style.backgroundColor = "black";
-                document.querySelector("#SS").style.backgroundColor = "black";
+                document.querySelector("#S").style.backgroundColor = "#B22222";
+                document.querySelector("#SS").style.backgroundColor = "#B22222";
                 if(girarSS){
                     document.querySelector("#SS").style.width = "40px";
                     document.querySelector("#SS").style.height = "20px";
@@ -112,8 +122,8 @@
 
             //girar L
             if(peca.id == "L"){
-                document.querySelector("#L").style.backgroundColor = "green";
-                document.querySelector("#LL").style.backgroundColor = "green";
+                document.querySelector("#L").style.backgroundColor = "#B22222";
+                document.querySelector("#LL").style.backgroundColor = "#B22222";
                 if(girarL){
                     document.querySelector("#L").style.width = "60px";
                     document.querySelector("#L").style.height = "20px";
@@ -151,6 +161,8 @@
 
             //girar T
             if(peca.id == "T"){
+                document.querySelector("#T").style.backgroundColor = "#B22222";
+                document.querySelector("#TT").style.backgroundColor = "#B22222";
                 if(girarT){
                     document.querySelector("#T").style.width = "20px";
                     document.querySelector("#T").style.height = "60px";
@@ -186,16 +198,23 @@
 
             //girar Q
             if(peca.id == "Q"){
-                document.querySelector("#Q").style.backgroundColor = "red";
+                document.querySelector("#Q").style.backgroundColor = "#B22222";
             }
         }
         //down arrow
         else if (e.keyCode == '40') {
-
+            down= down + 20;
+            if(down < 350){
+                peca.style.top= down + "px";
+            }
         }
         //left arrow
         else if (e.keyCode == '37') {
             controll= controll - 20;
+            controllTeste= controllTeste -1;
+            //test
+            
+            //test
             if(peca.id == "I"){
                 document.querySelector("#I").style.backgroundColor = "red";
                 document.querySelector("#I").style.left = controll+"px";
@@ -228,6 +247,10 @@
         //right arrow
         else if (e.keyCode == '39') {
             controll= controll + 20;
+            controllTeste= controllTeste +1;
+            //test
+            
+            //test
             if(peca.id == "I"){
                 document.querySelector("#I").style.backgroundColor = "red";
                 document.querySelector("#I").style.left = controll+"px";
@@ -260,28 +283,70 @@
 
     //inicio do jogo
     function start() {
-        createPeca();
         down= 0;
+        downTest= 0;
+        controllTeste= 6;
+        proximaPeca();
         gameLoop= setInterval(run, 1000/fps);
     }
 
     function run() {
-        document.querySelector("#proxima-peca").style.top= down + "px";
-        down= down + 50;
-        if(down > 500){
+        if(down >= 350 && downTest > 12){
             clearInterval(gameLoop);
-            start();
         }else{
             console.log(down);
+        }
+        peca.style.top= down + "px";
+        table.rows[downTest].cells[controllTeste].style.backgroundColor= "red";
+        down= down + 20;
+        downTest= downTest + 1;
+    }
+
+    function proximaPeca(){
+        proximaPeca= document.getElementById('proxima-peca');
+        createPeca();
+        //ajusteProximaPeca();
+        proximaPeca.appendChild(peca);
+    }
+
+    function ajusteProximaPeca(){
+        if(peca.id == "T"){
+            peca.style.left= "20px";
+            peca.style.top= "10px";
+        }else if(peca.id == "I"){
+            peca.style.top= "20px";
+            peca.style.left= "10px";
+        }else if(peca.id == "Q"){
+            peca.style.top= "10px";
+            peca.style.left= "30px";
+        }else if(peca.id == "L" || peca.id == "S"){
+            peca.style.top= "0px";
+            peca.style.left= "30px";
         }
     }
 
     function createPeca() {
         pecas= ["I","T","S","L","Q"];
-        proximaPeca= document.getElementById('proxima-peca');
         peca= document.createElement('div');
-        peca.id= "L";//pecas[Math.floor((Math.random() * 5) + 1)];
-        proximaPeca.appendChild(peca);
+        peca.id= pecas[Math.floor((Math.random() * 5))];
+        
+        if(peca.id == "T"){
+            pecaExtra= document.createElement('div');
+            pecaExtra.id= "TT";
+            peca.appendChild(pecaExtra);
+        }
+
+        if(peca.id == "S"){
+            pecaExtra= document.createElement('div');
+            pecaExtra.id= "SS";
+            peca.appendChild(pecaExtra);
+        }
+
+        if(peca.id == "L"){
+            pecaExtra= document.createElement('div');
+            pecaExtra.id= "LL";
+            peca.appendChild(pecaExtra);
+        }
     }
 
 })();
