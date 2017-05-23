@@ -23,7 +23,7 @@
         //controla a velocidade
         fps= 1;
         //cria o tabuleiro
-        createTabuleiro();
+        //createTabuleiro();
         //inicia o jogo
         start();
     }
@@ -32,9 +32,10 @@
     function createTabuleiro(){
         table= document.createElement("table");
         //cor dos blocos do tabuleiro
+        table.id= "tabela";
         table.style.backgroundColor= "#5F9EA0";
         //borda da tabela
-        table.border= "1";
+        table.border= "0";
         createLinhaTabuleiro();
         createLinhaTabuleiro();
         createLinhaTabuleiro();
@@ -291,15 +292,28 @@
     }
 
     function run() {
-        if(down >= 350 && downTest > 12){
-            clearInterval(gameLoop);
+        if(downTest < 12){
+            var delayMillis= 1000; //1 second
+            setTimeout(function() {
+                //your code to be executed after 1 second
+                table.rows[downTest].cells[controllTeste].style.backgroundColor= "red";
+            }, delayMillis);
+            console.log(downTest);
+            downTest= downTest + 1;
+            if(downTest <= 12){
+                setTimeout(function() {
+                    //your code to be executed after 1 second
+                    document.getElementById('tabuleiro').removeChild(table);
+                    //document.getElementById('tabela').style.backgroundColor= "#5F9EA0";
+                }, 800);
+            }
+            createTabuleiro();
         }else{
-            console.log(down);
+            clearInterval(gameLoop);
         }
-        peca.style.top= down + "px";
-        table.rows[downTest].cells[controllTeste].style.backgroundColor= "red";
-        down= down + 20;
-        downTest= downTest + 1;
+        //peca.style.top= down + "px";
+        //tabuleiro.parentNode.removeChild(table);
+        //down= down + 20;
     }
 
     function proximaPeca(){
