@@ -34,10 +34,6 @@
         createLinhaTabuleiro();
         createLinhaTabuleiro(); 
         createLinhaTabuleiro();
-        createLinhaTabuleiro();
-        createLinhaTabuleiro(); 
-        createLinhaTabuleiro();
-        createLinhaTabuleiro();
         document.getElementById("tabuleiro").appendChild(tabela);
     }
 
@@ -72,7 +68,8 @@
     addEventListener("keydown", function(e) {
         //up arrow
         if (e.keyCode == '38') {
-            
+            I2();
+            limpaI();
         }
         //down arrow
         else if (e.keyCode == '40') {
@@ -101,19 +98,17 @@
     }
 
     function run() {
-        if(down < 11){
-            if(down != 0 && tabela.rows[down+1].cells[controll+1].style.backgroundColor != "orange"){
-                tabela.rows[downAntes].cells[controllAntes].style.backgroundColor= "#5F9EA0";
-                tabela.rows[downAntes].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
-                tabela.rows[downAntes+1].cells[controllAntes].style.backgroundColor= "#5F9EA0";
-                tabela.rows[downAntes+1].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+        //colisaoQT= tabela.rows[down+1].cells[controll+1].style.backgroundColor;
+        //colisaoL= tabela.rows[down+2].cells[controll+1].style.backgroundColor;
+        //colisaoL1= tabela.rows[down+2].cells[controll].style.backgroundColor;
+        colisaoI= tabela.rows[down].cells[controll].style.backgroundColor;
+        if(down < 15){
+            if(down != 0){
+                limpaS();
             }
-            if(tabela.rows[down+1].cells[controll+1].style.backgroundColor != "orange"){
-                tabela.rows[down].cells[controll].style.backgroundColor= "orange";
-                tabela.rows[down].cells[controll+1].style.backgroundColor= "orange";
-                tabela.rows[down+1].cells[controll].style.backgroundColor= "orange";
-                tabela.rows[down+1].cells[controll+1].style.backgroundColor= "orange";
-                console.log("backgroundColor:"+tabela.rows[down+2].cells[controll+1].style.backgroundColor);
+            if(true){
+                S();
+                console.log("backgroundColor:"+tabela.rows[down+1].cells[controll+1].style.backgroundColor);
                 downAntes= down;
                 controllAntes= controll;
                 down= down + 1;
@@ -134,6 +129,90 @@
 
     function createPeca() {
         
+    }
+
+    function T(){
+        tabela.rows[down].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+1].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+2].style.backgroundColor= "orange";
+        tabela.rows[down+1].cells[controll+1].style.backgroundColor= "orange";
+    }
+
+    function Q(){
+        tabela.rows[down].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+1].style.backgroundColor= "orange";
+        tabela.rows[down+1].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+1].cells[controll+1].style.backgroundColor= "orange";
+    }
+
+    function L(){
+        tabela.rows[down].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+1].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+2].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+2].cells[controll+1].style.backgroundColor= "orange";
+    }
+
+    function S(){
+        tabela.rows[down].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+1].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+1].cells[controll+1].style.backgroundColor= "orange";
+        tabela.rows[down+2].cells[controll+1].style.backgroundColor= "orange";
+    }
+
+    function I(){
+        tabela.rows[down].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+1].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+2].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+3].style.backgroundColor= "orange";
+    }
+
+    function I2(){
+        tabela.rows[down].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+1].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+2].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+3].cells[controll].style.backgroundColor= "orange";
+    }
+
+    function girarI(){
+        tabela.rows[down+1].cells[controll].style.backgroundColor= "orange";
+        tabela.rows[down+2].cells[controll+1].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+2].style.backgroundColor= "orange";
+        tabela.rows[down].cells[controll+3].style.backgroundColor= "orange";
+    }
+
+    function limpaT(){
+        tabela.rows[downAntes].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes].cells[controllAntes+2].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+1].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+    }
+
+    function limpaQ(){
+        tabela.rows[downAntes].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+1].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+1].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+    }
+
+    function limpaL(){
+        tabela.rows[downAntes].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+1].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+2].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+2].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+    }
+
+    function limpaS(){
+        tabela.rows[downAntes].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+1].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+1].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes+2].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+    }
+
+    function limpaI(){
+        tabela.rows[downAntes].cells[controllAntes].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes].cells[controllAntes+1].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes].cells[controllAntes+2].style.backgroundColor= "#5F9EA0";
+        tabela.rows[downAntes].cells[controllAntes+3].style.backgroundColor= "#5F9EA0";
     }
 
 })();
