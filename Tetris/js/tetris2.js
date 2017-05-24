@@ -129,7 +129,7 @@
                     limpaS2();
                 }
             }
-            if(down < 11){//colisao
+            if(true){//colisao
                 if(peca == "I1"){
                     I1();
                 }else if(peca == "I2"){

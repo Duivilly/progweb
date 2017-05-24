@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Peças Tetris</title>
+	<style type="text/css">
+		#I {
+			width: 80px;
+			height: 20px;
+			background-color: orange;
+			position: relative;
+		}
+
+		#Q {
+			width: 40px; 
+			height: 40px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#S {
+			width: 20px; 
+			height: 40px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#SS {
+			width: 20px; 
+			height: 40px; 
+			background-color: orange; 
+			position: relative; 
+			top: 20px; 
+			left: 20px;
+		}
+
+		#T {
+			width: 60px; 
+			height: 20px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#TT {
+			width: 20px; 
+			height: 20px; 
+			background-color: orange; 
+			position: relative; 
+			top: 20px; 
+			left: 20px;
+		}
+
+		#L {
+			width: 20px; 
+			height: 60px; 
+			background-color: orange;
+			position: relative;
+		}
+
+		#LL {
+			width: 20px; 
+			height: 20px; 
+			background-color: orange; 
+			position: relative; 
+			top: 40px; 
+			left: 20px;
+		}
+
+		#tabuleiro {
+			width: 300px;
+			height: 500px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+
+<div id="proxima-peca"></div>
+<div id="tabuleiro"></div>
+<div id="informacoes"></div>
+
+<br><br><br>
+
+<button id="up">Up</button>
+<button id="left">Left</button>
+<button id="right">Right</button>
+<button id="down">Down</button>
+
+<script type="text/javascript">
+	var i= document.createElement('div');
+	i.id= "I";
+
+	var t= document.createElement('div');
+	t.id= "T";
+	var tt= document.createElement('div');
+	tt.id= "TT";
+	t.appendChild(tt);
+
+	var q= document.createElement('div');
+	q.id= "Q";
+
+	var l= document.createElement('div');
+	l.id= "L";
+	var ll= document.createElement('div');
+	ll.id= "LL";
+	l.appendChild(ll);
+
+	var s= document.createElement('div');
+	s.id= "S";
+	var ss= document.createElement('div');
+	ss.id= "SS";
+	s.appendChild(ss)
+
+	//próxima peça
+	function createPeca(){
+		pecas= [i,q,s,l,t];
+		proximaPeca= document.getElementById("proxima-peca");
+		tabuleiro= document.getElementById("tabuleiro");
+		opcao= Math.floor(Math.random() * 5);
+		proximaPeca.appendChild(pecas[opcao]);
+	}
+
+	//init
+	start();
+	//inicio do jogo
+    function start() {
+    	createPeca();
+    	tabuleiro.appendChild(proximaPeca);
+    	//console.log(pecas[(Math.floor(Math.random() * 5)]);
+        down= 0;
+        gameLoop= setInterval(run, 1000);
+    }
+
+    function run() {
+        if(down < 420){
+            pecas[opcao].style.top= down + "px";
+            down= down + 20;
+            console.log(down);
+        }else{
+            clearInterval(gameLoop);
+            start();
+        }
+    }
+
+
+	var up= document.getElementById('up');
+	var down= document.getElementById('down');
+	var left= document.getElementById('left');
+	var right= document.getElementById('right');
+	var controll= 0;
+	var girarI= false;
+	var girarS= false;
+	var girarSS= true;
+	var girarL= true;
+	var girarLL= [true,false,false,false];
+	var girarT= true;
+	var girarTT= [true,false,false,false];
+	right.onclick= function(){
+		controll= controll + 20;
+		pecas[opcao].style.left= controll + "px";
+	}
+
+	left.onclick= function(){
+		controll= controll - 20;
+		pecas[opcao].style.left= controll + "px";
+	}
+
+	down.onclick= function(){
+		down= down + 20;
+		pecas[opcao].style.top= down + "px";
+	}
+
+	up.onclick= function(){
+		//girar I
+		if(pecas[opcao].id == "I"){
+			if(girarI){
+				document.querySelector("#I").style.backgroundColor = "orange";
+				document.querySelector("#I").style.width = "80px";
+				document.querySelector("#I").style.height = "20px";
+				girarI= false;
+			}else{
+				document.querySelector("#I").style.backgroundColor = "yellow";
+				document.querySelector("#I").style.width = "20px";
+				document.querySelector("#I").style.height = "80px";
+				girarI= true;
+			}
+		}
+
+		//girar S
+		if(pecas[opcao].id == "S"){
+			if(girarS){
+				document.querySelector("#S").style.backgroundColor = "black";
+				document.querySelector("#S").style.width = "40px";
+				document.querySelector("#S").style.height = "20px";
+				document.querySelector("#SS").style.backgroundColor = "black";
+				document.querySelector("#SS").style.width = "40px";
+				document.querySelector("#SS").style.height = "20px";
+				girarS= false;
+			}else{
+				document.querySelector("#SS").style.backgroundColor = "orange";
+				document.querySelector("#SS").style.width = "20px";
+				document.querySelector("#SS").style.height = "40px";
+				document.querySelector("#S").style.backgroundColor = "orange";
+				document.querySelector("#S").style.width = "20px";
+				document.querySelector("#S").style.height = "40px";
+				girarS= true;
+			}
+		}
+	
+		//girar L
+		if(pecas[opcao].id == "L"){
+			if(girarL){
+				document.querySelector("#L").style.width = "60px";
+				document.querySelector("#L").style.height = "20px";
+				girarL= false;
+			}else{
+				document.querySelector("#L").style.width = "20px";
+				document.querySelector("#L").style.height = "60px";
+				girarL= true;
+			}
+			
+			if(girarLL[0]){
+				document.querySelector("#LL").style.top = "20px";
+				document.querySelector("#LL").style.left = "0px";
+				girarLL[0]= false;
+				girarLL[1]= true;
+			}else if(girarLL[1]){
+				document.querySelector("#LL").style.top = "0px";
+				document.querySelector("#LL").style.left = "-20px";
+				girarLL[1]= false;
+				girarLL[2]= true;
+			}else if(girarLL[2]){
+				document.querySelector("#LL").style.top = "-20px";
+				document.querySelector("#LL").style.left = "40px";
+				girarLL[2]= false;
+				girarLL[3]= true;
+			}else if(girarLL[3]){
+				document.querySelector("#LL").style.top = "40px";
+				document.querySelector("#LL").style.left = "20px";
+				girarLL[3]= false;
+				girarLL[0]= true;
+			}
+		}
+
+		//girar T
+		if(pecas[opcao].id == "T"){
+			if(girarT){
+				document.querySelector("#T").style.width = "20px";
+				document.querySelector("#T").style.height = "60px";
+				girarT= false;
+			}else{
+				document.querySelector("#T").style.width = "60px";
+				document.querySelector("#T").style.height = "20px";
+				girarT= true;
+			}
+
+			if(girarTT[0]){
+				document.querySelector("#TT").style.top = "20px";
+				document.querySelector("#TT").style.left = "-20px";
+				girarTT[0]= false;
+				girarTT[1]= true;
+			}else if(girarTT[1]){
+				document.querySelector("#TT").style.top = "-20px";
+				document.querySelector("#TT").style.left = "20px";
+				girarTT[1]= false;
+				girarTT[2]= true;
+			}else if(girarTT[2]){
+				document.querySelector("#TT").style.top = "20px";
+				document.querySelector("#TT").style.left = "20px";
+				girarTT[2]= false;
+				girarTT[3]= true;
+			}else if(girarTT[3]){
+				document.querySelector("#TT").style.top = "20px";
+				document.querySelector("#TT").style.left = "20px";
+				girarTT[3]= false;
+				girarTT[0]= true;
+			}
+		}
+	}
+
+</script>
+</body>
+</html>
