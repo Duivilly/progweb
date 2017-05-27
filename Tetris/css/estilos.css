@@ -1,77 +1,56 @@
-#tabuleiro div{
-    position: absolute;
-    background-color: #D3D3D3;
+/**/
+#q tr:nth-child(1) td:nth-child(6), #q tr:nth-child(1) td:nth-child(7), #q tr:nth-child(2) td:nth-child(6), #q tr:nth-child(2) td:nth-child(7) {
+	background-color: black;
 }
 
-#block tr:nth-child(1) td:nth-child(4) {
-    background-color: #D3D3D3;
+/**/
+#i1 tr:nth-child(2) td:nth-child(5), #i1 tr:nth-child(2) td:nth-child(6), #i1 tr:nth-child(2) td:nth-child(7), #i1 tr:nth-child(2) td:nth-child(8) {
+	background-color: black;
 }
 
-#proxima-peca {
-	position: relative;
-	background-color: #D3D3D3;
-	width: 100px;
-	height: 60px;
+#i2 tr:nth-child(1) td:nth-child(6), #i2 tr:nth-child(2) td:nth-child(6), #i2 tr:nth-child(3) td:nth-child(6), #i2 tr:nth-child(4) td:nth-child(6) {
+	background-color: black;
 }
 
-#I {
-	width: 80px;
-	height: 20px;
-	background-color: #556B2F;
-	position: absolute;
+/**/
+#t1 tr:nth-child(2) td:nth-child(5), #t1 tr:nth-child(2) td:nth-child(6), #t1 tr:nth-child(2) td:nth-child(7), #t1 tr:nth-child(3) td:nth-child(6) {
+	background-color: black;
 }
 
-#Q {
-	width: 40px; 
-	height: 40px; 
-	background-color: #556B2F;
-	position: absolute;
+#t2 tr:nth-child(2) td:nth-child(6), #t2 tr:nth-child(1) td:nth-child(7), #t2 tr:nth-child(2) td:nth-child(7), #t2 tr:nth-child(3) td:nth-child(7) {
+	background-color: black;
 }
 
-#S {
-	width: 20px; 
-	height: 40px; 
-	background-color: #556B2F;
-	position: absolute;
+#t3 tr:nth-child(3) td:nth-child(5), #t3 tr:nth-child(3) td:nth-child(6), #t3 tr:nth-child(3) td:nth-child(7), #t3 tr:nth-child(2) td:nth-child(6) {
+	background-color: black;
 }
 
-#SS {
-	width: 20px; 
-	height: 40px; 
-	background-color: #556B2F; 
-	position: absolute; 
-	top: 20px; 
-	left: 20px;
+#t4 tr:nth-child(1) td:nth-child(5), #t4 tr:nth-child(2) td:nth-child(5), #t4 tr:nth-child(2) td:nth-child(6), #t4 tr:nth-child(3) td:nth-child(5) {
+	background-color: black;
 }
 
-#T {
-	width: 60px; 
-	height: 20px; 
-	background-color: #556B2F;
-	position: absolute;
+/**/
+#l1 tr:nth-child(1) td:nth-child(6), #l1 tr:nth-child(2) td:nth-child(6), #l1 tr:nth-child(3) td:nth-child(7), #l1 tr:nth-child(3) td:nth-child(6) {
+	background-color: black;
 }
 
-#TT {
-	width: 20px; 
-	height: 20px; 
-	background-color: #556B2F; 
-	position: absolute; 
-	top: 20px; 
-	left: 20px;
+#l2 tr:nth-child(2) td:nth-child(5), #l2 tr:nth-child(2) td:nth-child(6), #l2 tr:nth-child(2) td:nth-child(7), #l2 tr:nth-child(3) td:nth-child(5) {
+	background-color: black;
 }
 
-#L {
-	width: 20px; 
-	height: 60px; 
-	background-color: #556B2F;
-	position: absolute;
+#l3 tr:nth-child(1) td:nth-child(6), #l3 tr:nth-child(1) td:nth-child(7), #l3 tr:nth-child(2) td:nth-child(7), #l3 tr:nth-child(3) td:nth-child(7) {
+	background-color: black;
 }
 
-#LL {
-	width: 20px; 
-	height: 20px; 
-	background-color: #556B2F; 
-	position: absolute; 
-	top: 40px; 
-	left: 20px;
+#l4 tr:nth-child(3) td:nth-child(5), #l4 tr:nth-child(3) td:nth-child(6), #l4 tr:nth-child(3) td:nth-child(7), #l4 tr:nth-child(2) td:nth-child(7) {
+	background-color: black;
+}
+
+/**/
+#s1 tr:nth-child(1) td:nth-child(6), #s1 tr:nth-child(2) td:nth-child(6), #s1 tr:nth-child(2) td:nth-child(7), #s1 tr:nth-child(3) td:nth-child(7) {
+	background-color: black;
+}
+
+#s2 tr:nth-child(1) td:nth-child(6), #s2 tr:nth-child(1) td:nth-child(7), #s2 tr:nth-child(2) td:nth-child(6), #s2 tr:nth-child(2) td:nth-child(5) {
+	background-color: black;
 }
