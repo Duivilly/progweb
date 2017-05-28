@@ -4,6 +4,11 @@
 
     //fazer closures//
     function init(){
+        //pecas do tabuleiro
+        pecas= ["q","i1"];
+        //primeira peca
+        random= Math.floor(Math.random() * 2);
+        pecaAnterior= pecas[random];
         //execucao do jogo
         gameLoop= null;
         //linhas do tabuleiro
@@ -19,10 +24,15 @@
         girarT= [true, false, false, false];
         //controla a velocidade
         fps= 1;
+        //pontuacao
+        infor= null;
+        score= 0;
         //proxima peca
         criarProximaPeca();
         //cria o tabuleiro
         createTabuleiro();
+        //infor
+        informacoes();
         //inicia o jogo
         start();
     }
@@ -80,20 +90,7 @@
     addEventListener("keydown", function(e) {
         //up arrow
         if (e.keyCode == '38') {
-            if(id == "i1" || id == "i2"){
-                //verifica base
-                if(down <= 8){
-                    if(girarI){
-                        //table.id= "i2";
-                        i2();
-                        girarI= false;
-                    }else{
-                        //table.id= "i1";
-                        i1();
-                        girarI= true;
-                    }
-                }
-            }
+            //i
 
             if(table.id == "s1" || table.id == "s2"){
                 if(girarS){
@@ -147,7 +144,7 @@
         }
         //down arrow
         else if (e.keyCode == '40') {
-            if(down < 12){
+            if(down < 11){
                 down= down + 1;
             }
         }
@@ -156,22 +153,43 @@
             if(id == "i1" && controll > -4){
                 controll= controll -1;
             }
+            if(id == "i2" && controll > -5){
+                controll= controll -1;
+            }
+            if(id == "q" && controll > -5){
+                controll= controll -1;
+            }
         }
         //right arrow
         else if (e.keyCode == '39') {
             if(id == "i1" && controll < 4){
                 controll= controll + 1;
             }
+            if(id == "i2" && controll < 6){
+                controll= controll + 1;
+            }
+            if(id == "q" && controll < 5){
+                controll= controll + 1;
+            }
         }
     });
+
+    function createPeca(){
+        //id peca tabuleiro
+        id= pecaAnterior;
+        //pecas do tabuleiro
+        pecas= ["q","i1"];
+        //primeira peca
+        random= Math.floor(Math.random() * 2);
+        //id proxima peca
+        proximaPeca.id= pecas[random];
+        pecaAnterior= pecas[random];
+    }
 
     //inicio do jogo
     function start() {
         down= 0;
-        //id proxima peca
-        proximaPeca.id= "i1";
-        //id peca tabuleiro
-        id= "i1";
+        createPeca();
         gameLoop= setInterval(run, 1000/fps);
     }
 
@@ -186,19 +204,20 @@
             //peca i
             if(id == "i1"){
                 i1();
+                //base
                 lines= 12;
-            }else{
-                if(colisaoI2()){
-                    i2();
-                    //base
-                    lines= 9;
-                }else{
-                    //limpa loop
-                    clearInterval(gameLoop);
-                    //reinicia
-                    start();
-                }
             }
+            if(id == "i2"){
+                i2();
+                //base
+                lines= 9;
+            }
+            if(id == "q"){
+                q();
+                //base
+                lines= 11;
+            }
+
             //console.log("down: "+down+" controll: "+controll);
             //move para baixo
             down= down + 1;
@@ -260,6 +279,24 @@
         table.rows[down].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
+        if(down < 9){
+            colisao1= table.rows[down+2].cells[controll+5].style.backgroundColor;
+            colisao2= table.rows[down+2].cells[controll+6].style.backgroundColor;
+        }
+        if(colisao1 == "black" || colisao2 == "black"){
+            console.log("Colisão q"+" Posição: "+down);
+            //atualiza jogadas
+            guardarPosicoes();
+            //limpa loop
+            clearInterval(gameLoop);
+            if(down == 1){
+                //infor
+                console.log("GAME OVER");
+            }else{
+                //reinicia
+                start();
+            }
+        }
     }
 
     function i1(){
@@ -293,19 +330,26 @@
 
     function i2(){
         id= "i2";
-        table.rows[down-1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+5].style.backgroundColor= "black";
-    }
-
-    function colisaoI2(){
-        colisao= table.rows[down+2].cells[controll+5].style.backgroundColor;
+        table.rows[down+3].cells[controll+5].style.backgroundColor= "black";
+        if(down < 8){
+            colisao= table.rows[down+4].cells[controll+5].style.backgroundColor;
+        }
         if(colisao == "black"){
-            console.log("colisaoI2");
-            return false;
-        }else{
-            return true;
+            console.log("Colisão i2"+" Posição: "+down);
+            //atualiza jogadas
+            guardarPosicoes();
+            //limpa loop
+            clearInterval(gameLoop);
+            if(down == 1){
+                //infor
+                console.log("GAME OVER");
+            }else{
+                //reinicia
+                start();
+            }
         }
     }
 
@@ -354,6 +398,11 @@
                     }
                 }
                 console.log('aplicando deslocamento...');
+                //atualiza pontuacao
+                document.getElementById('informacoes').removeChild(infor);
+                score= score + 100;
+                informacoes();
+                //
                 pecasi= [];
                 pecasj= [];
                 guardarPosicoes();
@@ -362,6 +411,15 @@
             }
             cont= 0;
         }
+    }
+
+    function informacoes(){
+        infor= document.createElement('div');
+        infor.style.width= "290px";
+        infor.style.height= "50px";
+        infor.style.backgroundColor= "yellow";
+        infor.innerHTML= "SCORE: "+score;
+        document.getElementById('informacoes').appendChild(infor);
     }
 
 })();
