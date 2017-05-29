@@ -5,9 +5,9 @@
     //fazer closures//
     function init(){
         //pecas do tabuleiro
-        pecas= ["q","i1"];
+        pecas= ["q","i1","s1","l1"];
         //primeira peca
-        random= Math.floor(Math.random() * 2);
+        random= Math.floor(Math.random() * 4);
         pecaAnterior= pecas[random];
         //execucao do jogo
         gameLoop= null;
@@ -179,6 +179,9 @@
             if(id == "l4" && controll > -4){
                 controll= controll -1;
             }
+            if(id == "t1" && controll > -4){
+                controll= controll -1;
+            }
 
         }
         //right arrow
@@ -215,11 +218,11 @@
 
     function createPeca(){
         //id peca tabuleiro
-        id= "l3";//pecaAnterior;
+        id= "t1";//pecaAnterior;
         //pecas do tabuleiro
-        pecas= ["q","i1"];
+        pecas= ["q","i1","s1","l1"];
         //primeira peca
-        random= Math.floor(Math.random() * 2);
+        random= Math.floor(Math.random() * 4);
         //id proxima peca
         proximaPeca.id= pecas[random];
         pecaAnterior= pecas[random];
@@ -285,6 +288,11 @@
                 l4();
                 //base
                 lines= 10;
+            }
+            if(id == "t1"){
+                t1();
+                //base
+                lines= 11;
             }
 
             //console.log("down: "+down+" controll: "+controll);
@@ -440,7 +448,7 @@
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+6].style.backgroundColor= "black";
-        if(down < 8){
+        if(down < 9){
             colisao1= table.rows[down+2].cells[controll+5].style.backgroundColor;
             colisao2= table.rows[down+3].cells[controll+6].style.backgroundColor;
         }
@@ -596,6 +604,37 @@
             colisao1= table.rows[down+3].cells[controll+4].style.backgroundColor;
             colisao2= table.rows[down+3].cells[controll+5].style.backgroundColor;
             colisao3= table.rows[down+3].cells[controll+6].style.backgroundColor;
+        }
+        if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
+            console.log("Colisão l4"+" Posição: "+down);
+            //atualiza jogadas
+            guardarPosicoes();
+            //limpa loop
+            clearInterval(gameLoop);
+            if(down == 1){
+                //infor
+                console.log("GAME OVER");
+                document.getElementById('informacoes').removeChild(infor);
+                gameover= true;
+                score= "GAME OVER";
+                informacoes();
+            }else{
+                //reinicia
+                start();
+            }
+        }
+    }
+
+    function t1(){
+        id= "t1";
+        table.rows[down].cells[controll+5].style.backgroundColor= "black";
+        table.rows[down].cells[controll+6].style.backgroundColor= "black";
+        table.rows[down].cells[controll+7].style.backgroundColor= "black";
+        table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
+        if(down < 10){
+            colisao1= table.rows[down+1].cells[controll+5].style.backgroundColor;
+            colisao2= table.rows[down+1].cells[controll+7].style.backgroundColor;
+            colisao3= table.rows[down+2].cells[controll+6].style.backgroundColor;
         }
         if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
             console.log("Colisão l4"+" Posição: "+down);
