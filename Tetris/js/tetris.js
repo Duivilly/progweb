@@ -19,6 +19,8 @@
         controll= 0;
         //peca atual
         id= null;
+        //
+        girar= true;
         //ups giros
         girarI= true;
         girarS= true;
@@ -92,55 +94,87 @@
     addEventListener("keydown", function(e) {
         //up arrow
         if (e.keyCode == '38') {
-            //i
-
-            if(table.id == "s1" || table.id == "s2"){
-                if(girarS){
-                    table.id= "s2";
-                    girarS= false;
+            if(id == "i1" || id == "i2"){
+                if(girarI){
+                    girar= false;
+                    i2();
+                    girarI= false;
+                    girar= true;
                 }else{
-                    table.id= "s1";
+                    girar= false;
+                    i1();
+                    girarI= true;
+                    girar= true;
+                }
+            }
+
+            if(id == "s1" || id == "s2"){
+                if(girarS){
+                    girar= false;
+                    s2();
+                    girarS= false;
+                    girar= true;
+                }else{
+                    girar= false;
+                    s1();
+                    girar= true;
                     girarS= true;
                 }
             }
 
-            if(table.id == "l1" || table.id == "l2" || table.id == "l3" || table.id == "l4"){
+            if(id == "l1" || id == "l2" || id == "l3" || id == "l4"){
                 if(girarL[0]){
-                    table.id= "l2";
+                    girar= false;
+                    l2();
                     girarL[1]= true;
                     girarL[0]= false;
+                    girar= true;
                 }else if(girarL[1]){
-                    table.id= "l3";
+                    girar= false;
+                    l3();
                     girarL[2]= true;
                     girarL[1]= false;
+                    girar= true;
                 }else if(girarL[2]){
-                    table.id= "l4";
+                    girar= false;
+                    l4();
                     girarL[3]= true;
                     girarL[2]= false;
+                    girar= true;
                 }else{
-                    table.id= "l1";
+                    girar= false;
+                    l1();
                     girarL[0]= true;
                     girarL[3]= false;
+                    girar= true;
                 }
             }
 
-            if(table.id == "t1" || table.id == "t2" || table.id == "t3" || table.id == "t4"){
+            if(id == "t1" || id == "t2" || id == "t3" || id == "t4"){
                 if(girarT[0]){
-                    table.id= "t2";
+                    girar= false;
+                    t2();
                     girarT[1]= true;
                     girarT[0]= false;
+                    girar= true;
                 }else if(girarT[1]){
-                    table.id= "t3";
+                    girar= false;
+                    t3();
                     girarT[2]= true;
                     girarT[1]= false;
+                    girar= true;
                 }else if(girarT[2]){
-                    table.id= "t4";
+                    girar= false;
+                    t4();
                     girarT[3]= true;
                     girarT[2]= false;
+                    girar= true;
                 }else{
-                    table.id= "t1";
+                    girar= false;
+                    t1();
                     girarT[0]= true;
                     girarT[3]= false;
+                    girar= true;
                 }
             }
         }
@@ -179,7 +213,16 @@
             if(id == "l4" && controll > -4){
                 controll= controll -1;
             }
-            if(id == "t1" && controll > -4){
+            if(id == "t1" && controll > -5){
+                controll= controll -1;
+            }
+            if(id == "t2" && controll > -5){
+                controll= controll -1;
+            }
+            if(id == "t3" && controll > -4){
+                controll= controll -1;
+            }
+            if(id == "t4" && controll > -4){
                 controll= controll -1;
             }
 
@@ -213,12 +256,24 @@
             if(id == "l4" && controll < 5){
                 controll= controll + 1;
             }
+            if(id == "t1" && controll < 4){
+                controll= controll + 1;
+            }
+            if(id == "t2" && controll < 5){
+                controll= controll + 1;
+            }
+            if(id == "t3" && controll < 5){
+                controll= controll + 1;
+            }
+            if(id == "t4" && controll < 6){
+                controll= controll + 1;
+            }
         }
     });
 
     function createPeca(){
         //id peca tabuleiro
-        id= "t1";//pecaAnterior;
+        id= pecaAnterior;
         //pecas do tabuleiro
         pecas= ["q","i1","s1","l1"];
         //primeira peca
@@ -293,6 +348,21 @@
                 t1();
                 //base
                 lines= 11;
+            }
+            if(id == "t2"){
+                t2();
+                //base
+                lines= 10;
+            }
+            if(id == "t3"){
+                t3();
+                //base
+                lines= 10;
+            }
+            if(id == "t4"){
+                t4();
+                //base
+                lines= 10;
             }
 
             //console.log("down: "+down+" controll: "+controll);
@@ -386,29 +456,30 @@
         table.rows[down].cells[controll+5].style.backgroundColor= "black";
         table.rows[down].cells[controll+6].style.backgroundColor= "black";
         table.rows[down].cells[controll+7].style.backgroundColor= "black";
-        
-        if(down < 11){
-            colisao1= table.rows[down+1].cells[controll+4].style.backgroundColor;
-            colisao2= table.rows[down+1].cells[controll+5].style.backgroundColor;
-            colisao3= table.rows[down+1].cells[controll+6].style.backgroundColor;
-            colisao4= table.rows[down+1].cells[controll+7].style.backgroundColor;
-        }
-        if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black" || colisao4 == "black"){
-            console.log("Colisão i1"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+        if(girar){
+            if(down < 11){
+                colisao1= table.rows[down+1].cells[controll+4].style.backgroundColor;
+                colisao2= table.rows[down+1].cells[controll+5].style.backgroundColor;
+                colisao3= table.rows[down+1].cells[controll+6].style.backgroundColor;
+                colisao4= table.rows[down+1].cells[controll+7].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black" || colisao4 == "black"){
+                console.log("Colisão i1"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
@@ -419,25 +490,27 @@
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+3].cells[controll+5].style.backgroundColor= "black";
-        if(down < 8){
-            colisao= table.rows[down+4].cells[controll+5].style.backgroundColor;
-        }
-        if(colisao == "black"){
-            console.log("Colisão i2"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+        if(girar){
+            if(down < 8){
+                colisao= table.rows[down+4].cells[controll+5].style.backgroundColor;
+            }
+            if(colisao == "black"){
+                console.log("Colisão i2"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
@@ -478,27 +551,29 @@
         table.rows[down].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+4].style.backgroundColor= "black";
-        if(down < 9){
-            colisao1= table.rows[down+1].cells[controll+6].style.backgroundColor;
-            colisao2= table.rows[down+2].cells[controll+5].style.backgroundColor;
-            colisao3= table.rows[down+2].cells[controll+4].style.backgroundColor;
-        }
-        if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
-            console.log("Colisão s1"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+1].cells[controll+6].style.backgroundColor;
+                colisao2= table.rows[down+2].cells[controll+5].style.backgroundColor;
+                colisao3= table.rows[down+2].cells[controll+4].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
+                console.log("Colisão s1"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
@@ -509,26 +584,28 @@
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+5].style.backgroundColor= "black";
-        if(down < 9){
-            colisao1= table.rows[down+3].cells[controll+6].style.backgroundColor;
-            colisao2= table.rows[down+3].cells[controll+5].style.backgroundColor;
-        }
-        if(colisao1 == "black" || colisao2 == "black"){
-            console.log("Colisão s1"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+3].cells[controll+6].style.backgroundColor;
+                colisao2= table.rows[down+3].cells[controll+5].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black"){
+                console.log("Colisão s1"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
@@ -539,27 +616,29 @@
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+4].style.backgroundColor= "black";
-        if(down < 9){
-            colisao1= table.rows[down+2].cells[controll+5].style.backgroundColor;
-            colisao2= table.rows[down+2].cells[controll+6].style.backgroundColor;
-            colisao3= table.rows[down+3].cells[controll+4].style.backgroundColor;
-        }
-        if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
-            console.log("Colisão l2"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+2].cells[controll+5].style.backgroundColor;
+                colisao2= table.rows[down+2].cells[controll+6].style.backgroundColor;
+                colisao3= table.rows[down+3].cells[controll+4].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
+                console.log("Colisão l2"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
@@ -570,26 +649,28 @@
         table.rows[down].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+6].style.backgroundColor= "black";
-        if(down < 9){
-            colisao1= table.rows[down+1].cells[controll+5].style.backgroundColor;
-            colisao2= table.rows[down+3].cells[controll+6].style.backgroundColor;
-        }
-        if(colisao1 == "black" || colisao2 == "black"){
-            console.log("Colisão l3"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+1].cells[controll+5].style.backgroundColor;
+                colisao2= table.rows[down+3].cells[controll+6].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black"){
+                console.log("Colisão l3"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
@@ -600,27 +681,29 @@
         table.rows[down+2].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+2].cells[controll+6].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
-        if(down < 9){
-            colisao1= table.rows[down+3].cells[controll+4].style.backgroundColor;
-            colisao2= table.rows[down+3].cells[controll+5].style.backgroundColor;
-            colisao3= table.rows[down+3].cells[controll+6].style.backgroundColor;
-        }
-        if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
-            console.log("Colisão l4"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+3].cells[controll+4].style.backgroundColor;
+                colisao2= table.rows[down+3].cells[controll+5].style.backgroundColor;
+                colisao3= table.rows[down+3].cells[controll+6].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
+                console.log("Colisão l4"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
@@ -631,27 +714,126 @@
         table.rows[down].cells[controll+6].style.backgroundColor= "black";
         table.rows[down].cells[controll+7].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
-        if(down < 10){
-            colisao1= table.rows[down+1].cells[controll+5].style.backgroundColor;
-            colisao2= table.rows[down+1].cells[controll+7].style.backgroundColor;
-            colisao3= table.rows[down+2].cells[controll+6].style.backgroundColor;
+        if(girar){
+            if(down < 10){
+                colisao1= table.rows[down+1].cells[controll+5].style.backgroundColor;
+                colisao2= table.rows[down+1].cells[controll+7].style.backgroundColor;
+                colisao3= table.rows[down+2].cells[controll+6].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
+                console.log("Colisão l4"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
+            }
         }
-        if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
-            console.log("Colisão l4"+" Posição: "+down);
-            //atualiza jogadas
-            guardarPosicoes();
-            //limpa loop
-            clearInterval(gameLoop);
-            if(down == 1){
-                //infor
-                console.log("GAME OVER");
-                document.getElementById('informacoes').removeChild(infor);
-                gameover= true;
-                score= "GAME OVER";
-                informacoes();
-            }else{
-                //reinicia
-                start();
+    }
+
+    function t2(){
+        id= "t2";
+        table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
+        table.rows[down].cells[controll+6].style.backgroundColor= "black";
+        table.rows[down+1].cells[controll+6].style.backgroundColor= "black";
+        table.rows[down+2].cells[controll+6].style.backgroundColor= "black";
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+2].cells[controll+5].style.backgroundColor;
+                colisao2= table.rows[down+3].cells[controll+6].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black"){
+                console.log("Colisão t2"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
+            }
+        }
+    }
+
+    function t3(){
+        id= "t3";
+        table.rows[down+2].cells[controll+4].style.backgroundColor= "black";
+        table.rows[down+2].cells[controll+5].style.backgroundColor= "black";
+        table.rows[down+2].cells[controll+6].style.backgroundColor= "black";
+        table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+3].cells[controll+4].style.backgroundColor;
+                colisao2= table.rows[down+3].cells[controll+5].style.backgroundColor;
+                colisao3= table.rows[down+3].cells[controll+6].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black" || colisao3 == "black"){
+                console.log("Colisão t3"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
+            }
+        }
+    }
+
+    function t4(){
+        id= "t4";
+        table.rows[down].cells[controll+4].style.backgroundColor= "black";
+        table.rows[down+1].cells[controll+4].style.backgroundColor= "black";
+        table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
+        table.rows[down+2].cells[controll+4].style.backgroundColor= "black";
+        if(girar){
+            if(down < 9){
+                colisao1= table.rows[down+2].cells[controll+5].style.backgroundColor;
+                colisao2= table.rows[down+3].cells[controll+4].style.backgroundColor;
+            }
+            if(colisao1 == "black" || colisao2 == "black"){
+                console.log("Colisão t3"+" Posição: "+down);
+                //atualiza jogadas
+                guardarPosicoes();
+                //limpa loop
+                clearInterval(gameLoop);
+                if(down == 1){
+                    //infor
+                    console.log("GAME OVER");
+                    document.getElementById('informacoes').removeChild(infor);
+                    gameover= true;
+                    score= "GAME OVER";
+                    informacoes();
+                }else{
+                    //reinicia
+                    start();
+                }
             }
         }
     }
