@@ -294,7 +294,7 @@
 
     function createPeca(){
         //id peca tabuleiro
-        id= "t1";//pecaAnterior;
+        id= pecaAnterior;
         //pecas do tabuleiro
         pecas= ["q","i1","s1","l1"];
         //primeira peca
@@ -306,6 +306,7 @@
 
     //inicio do jogo
     function start() {
+        controll= 0;
         down= 0;
         createPeca();
         gameLoop= setInterval(run, 1000/fps);
