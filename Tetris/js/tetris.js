@@ -102,6 +102,14 @@
                     girar= true;
                 }else{
                     girar= false;
+                    //evita bug na left
+                    if(controll == -5){
+                        controll= controll + 1;
+                    }
+                    //evita bug na right
+                    if(controll == 6){
+                        controll= controll - 2;
+                    }
                     i1();
                     girarI= true;
                     girar= true;
@@ -111,6 +119,11 @@
             if(id == "s1" || id == "s2"){
                 if(girarS){
                     girar= false;
+                    //evita bug na lateral left
+                    if(controll == -5){
+                        controll= controll + 1; 
+                        console.log(controll);
+                    }
                     s2();
                     girarS= false;
                     girar= true;
@@ -125,6 +138,10 @@
             if(id == "l1" || id == "l2" || id == "l3" || id == "l4"){
                 if(girarL[0]){
                     girar= false;
+                    //evita bug na left
+                    if(controll == -5){
+                        controll= controll +1;
+                    }
                     l2();
                     girarL[1]= true;
                     girarL[0]= false;
@@ -159,6 +176,10 @@
                     girar= true;
                 }else if(girarT[1]){
                     girar= false;
+                    //evita bug na left
+                    if(controll == -5){
+                        controll= controll + 1;
+                    }
                     t3();
                     girarT[2]= true;
                     girarT[1]= false;
@@ -273,7 +294,7 @@
 
     function createPeca(){
         //id peca tabuleiro
-        id= pecaAnterior;
+        id= "t1";//pecaAnterior;
         //pecas do tabuleiro
         pecas= ["q","i1","s1","l1"];
         //primeira peca
@@ -552,7 +573,7 @@
         table.rows[down+1].cells[controll+5].style.backgroundColor= "black";
         table.rows[down+1].cells[controll+4].style.backgroundColor= "black";
         if(girar){
-            if(down < 9){
+            if(down < 10){
                 colisao1= table.rows[down+1].cells[controll+6].style.backgroundColor;
                 colisao2= table.rows[down+2].cells[controll+5].style.backgroundColor;
                 colisao3= table.rows[down+2].cells[controll+4].style.backgroundColor;
