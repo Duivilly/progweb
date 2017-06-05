@@ -926,6 +926,9 @@
         infor.style.height= "50px";
         infor.style.backgroundColor= "yellow";
         infor.innerHTML= "SCORE: "+score;
+        if(score == "1000" || score == "2000" || score == "3000"){
+            fps= fps + 1;
+        }
         document.getElementById('informacoes').appendChild(infor);
     }
 
