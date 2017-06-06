@@ -1,0 +1,56 @@
+/**/
+#q tr:nth-child(1) td:nth-child(6), #q tr:nth-child(1) td:nth-child(7), #q tr:nth-child(2) td:nth-child(6), #q tr:nth-child(2) td:nth-child(7) {
+	background-color: black;
+}
+
+/**/
+#i1 tr:nth-child(1) td:nth-child(5), #i1 tr:nth-child(1) td:nth-child(6), #i1 tr:nth-child(1) td:nth-child(7), #i1 tr:nth-child(1) td:nth-child(8) {
+	background-color: black;
+}
+
+#i2 tr:nth-child(1) td:nth-child(6), #i2 tr:nth-child(2) td:nth-child(6), #i2 tr:nth-child(3) td:nth-child(6), #i2 tr:nth-child(4) td:nth-child(6) {
+	background-color: black;
+}
+
+/**/
+#t1 tr:nth-child(1) td:nth-child(5), #t1 tr:nth-child(1) td:nth-child(6), #t1 tr:nth-child(1) td:nth-child(7), #t1 tr:nth-child(2) td:nth-child(6) {
+	background-color: black;
+}
+
+#t2 tr:nth-child(2) td:nth-child(6), #t2 tr:nth-child(1) td:nth-child(7), #t2 tr:nth-child(2) td:nth-child(7), #t2 tr:nth-child(3) td:nth-child(7) {
+	background-color: black;
+}
+
+#t3 tr:nth-child(3) td:nth-child(5), #t3 tr:nth-child(3) td:nth-child(6), #t3 tr:nth-child(3) td:nth-child(7), #t3 tr:nth-child(2) td:nth-child(6) {
+	background-color: black;
+}
+
+#t4 tr:nth-child(1) td:nth-child(5), #t4 tr:nth-child(2) td:nth-child(5), #t4 tr:nth-child(2) td:nth-child(6), #t4 tr:nth-child(3) td:nth-child(5) {
+	background-color: black;
+}
+
+/**/
+#l1 tr:nth-child(1) td:nth-child(6), #l1 tr:nth-child(2) td:nth-child(6), #l1 tr:nth-child(3) td:nth-child(7), #l1 tr:nth-child(3) td:nth-child(6) {
+	background-color: black;
+}
+
+#l2 tr:nth-child(2) td:nth-child(5), #l2 tr:nth-child(2) td:nth-child(6), #l2 tr:nth-child(2) td:nth-child(7), #l2 tr:nth-child(3) td:nth-child(5) {
+	background-color: black;
+}
+
+#l3 tr:nth-child(1) td:nth-child(6), #l3 tr:nth-child(1) td:nth-child(7), #l3 tr:nth-child(2) td:nth-child(7), #l3 tr:nth-child(3) td:nth-child(7) {
+	background-color: black;
+}
+
+#l4 tr:nth-child(3) td:nth-child(5), #l4 tr:nth-child(3) td:nth-child(6), #l4 tr:nth-child(3) td:nth-child(7), #l4 tr:nth-child(2) td:nth-child(7) {
+	background-color: black;
+}
+
+/**/
+#s1 tr:nth-child(1) td:nth-child(6), #s1 tr:nth-child(2) td:nth-child(6), #s1 tr:nth-child(2) td:nth-child(7), #s1 tr:nth-child(3) td:nth-child(7) {
+	background-color: black;
+}
+
+#s2 tr:nth-child(1) td:nth-child(6), #s2 tr:nth-child(1) td:nth-child(7), #s2 tr:nth-child(2) td:nth-child(6), #s2 tr:nth-child(2) td:nth-child(5) {
+	background-color: black;
+}

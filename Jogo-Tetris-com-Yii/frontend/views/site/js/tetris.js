@@ -392,7 +392,6 @@
             //console.log("down: "+down+" controll: "+controll);
             //move para baixo
             down= down + 1;
-            //console.log(down);
             calculaPoint();
             //coloca tabela no tabuleiro
             document.getElementById('tabuleiro').appendChild(table);
