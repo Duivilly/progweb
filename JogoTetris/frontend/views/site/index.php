@@ -9,6 +9,7 @@ $this->title = 'Jogo Tetris';
         <link rel="stylesheet" href="css/estilos.css">
     </head>
     <body>
+        <!--<button class="btn btn-primary" id="iniciar">Iniciar</button><br><br>-->
         <div id="proxima-peca"></div>
         <div id="tabuleiro"></div>
         <div id="informacoes"></div>
