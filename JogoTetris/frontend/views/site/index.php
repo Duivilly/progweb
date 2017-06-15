@@ -10,9 +10,9 @@ $this->title = 'Jogo Tetris';
     </head>
     <body>
         <!--<button class="btn btn-primary" id="iniciar">Iniciar</button><br><br>-->
-        <div id="proxima-peca"></div>
+        <!--<div id="proxima-peca"></div>
         <div id="tabuleiro"></div>
         <div id="informacoes"></div>
-        <script type="text/javascript" src="js/tetris.js"></script>
+        <script type="text/javascript" src="js/tetris.js"></script>-->
     </body>
 </html>

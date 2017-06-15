@@ -3,21 +3,23 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\JogadaSearch */
+/* @var $searchModel common\models\UserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Jogadas';
+$this->title = 'Usuários';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jogada-index">
+<div class="user-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    <!--
     <p>
-        <?= Html::a('Create Jogada', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Usuário', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    -->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -25,15 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-            [
-                'attribute' => 'id_user',
-                //'value' => $dataProvider->user->username,
-            ],
-            //'id_user',
-            'pontuacao',
-            'data_hora',
+            'username',
+            //'auth_key',
+            //'password_hash',
+            //'password_reset_token',
+            'email:email',
+            // 'status',
+            // 'created_at',
+            // 'updated_at',
+            //'id_curso',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}']
         ],
     ]); ?>
 </div>

@@ -46,7 +46,7 @@ class Curso extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nome' => 'Nome',
             'sigla' => 'Sigla',
-            'descricao' => 'Descricao',
+            'descricao' => 'Descrição',
         ];
     }
 
@@ -57,4 +57,5 @@ class Curso extends \yii\db\ActiveRecord
     {
         return $this->hasMany(User::className(), ['id_curso' => 'id']);
     }
+
 }

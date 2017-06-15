@@ -36,8 +36,11 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Cursos', 'url' => ['/curso/index']],
+        ['label' => 'Jogadas', 'url' => ['/jogada/index']],
         ['label' => 'Sobre', 'url' => ['/site/about']],
         ['label' => 'Contato', 'url' => ['/site/contact']],
+        ['label' => 'Usuários', 'url' => ['/user/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Criar Conta', 'url' => ['/site/signup']];

@@ -4,19 +4,15 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Jogada */
+/* @var $model common\models\User */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="jogada-form">
+<div class="user-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <!--<?= $form->field($model, 'id_user')->textInput() ?>-->
-
-    <?= $form->field($model, 'pontuacao')->textInput() ?>
-
-    <!--<?= $form->field($model, 'data_hora')->textInput() ?>-->
+    <?= $form->field($model, 'status')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
