@@ -1,7 +1,13 @@
 <?php
+use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 $this->title = 'Jogo Tetris';
 ?>
+
+<?= Html::img('@web/index.jpeg',['width'=>'400']) ?>
+<?= Html::a('Iniciar Jogo', ['site/index'], ['class' => 'btn btn-success']) ?>
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -9,7 +15,6 @@ $this->title = 'Jogo Tetris';
         <link rel="stylesheet" href="css/estilos.css">
     </head>
     <body>
-        <!--<button class="btn btn-primary" id="iniciar">Iniciar</button><br><br>-->
         <!--<div id="proxima-peca"></div>
         <div id="tabuleiro"></div>
         <div id="informacoes"></div>

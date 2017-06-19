@@ -191,6 +191,11 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasOne(Curso::className(), ['id' => 'id_curso']);
     }
 
+    public function afterFind(){
+        parent::afterFind();
+        $this->username= ucfirst($this->username);
+    }
+
     public function attributeLabels(){
         return [
             'username' => 'Nome',

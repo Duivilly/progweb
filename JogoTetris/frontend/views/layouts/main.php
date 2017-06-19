@@ -28,19 +28,19 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Tetris',
+        'brandLabel' => 'Home',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Cursos', 'url' => ['/curso/index']],
-        ['label' => 'Jogadas', 'url' => ['/jogada/index']],
-        ['label' => 'Sobre', 'url' => ['/site/about']],
-        ['label' => 'Contato', 'url' => ['/site/contact']],
+        //['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'Usuários', 'url' => ['/user/index']],
+        ['label' => 'Jogadas', 'url' => ['/jogada/index']],
+        ['label' => 'Cursos', 'url' => ['/curso/index']],
+        ['label' => 'Contato', 'url' => ['/site/contact']],
+        ['label' => 'Sobre', 'url' => ['/site/about']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Criar Conta', 'url' => ['/site/signup']];
