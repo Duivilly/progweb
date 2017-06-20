@@ -25,8 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'id_curso')->dropDownList($cursos, ['prompt' => 'Selecione o seu curso']) ?>
 
-                <?= var_dump($cursos) ?>
-
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
                 <div class="form-group">

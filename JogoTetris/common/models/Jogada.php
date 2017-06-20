@@ -57,4 +57,10 @@ class Jogada extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
     }
+
+    public function afterFind(){
+        parent::afterFind();
+        $this->id_user= $this->user->username;
+        $this->data_hora= date("d/m/Y H:m:s", strtotime($this->data_hora));
+    }
 }
