@@ -1,7 +1,8 @@
 <?php
-
 namespace frontend\controllers;
 use Yii;
+use common\models\Jogada;
+
 class JogadaController extends \yii\web\Controller
 {
     public function actionPlay()
@@ -16,9 +17,19 @@ class JogadaController extends \yii\web\Controller
 
     public function actionSave()
     {
-        #$pontuacao= Yii::app->request->post('pontuacao');
-        #$id_user= Yii::app->user->id;
-        #return $this->render('save');
+        if(!Yii::$app->user->isGuest){
+            $pontuacao= Yii::$app->request->post('pontuacao');
+            $user= Yii::$app->user->identity->id;
+            $jogada= new Jogada();
+            $jogada->id_user= $user;
+            $jogada->pontuacao= $pontuacao;
+        }
+
+        if($jogada->save()){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
 }
