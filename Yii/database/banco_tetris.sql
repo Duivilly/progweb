@@ -16,30 +16,57 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contato`
+-- Table structure for table `curso`
 --
 
-DROP TABLE IF EXISTS `contato`;
+DROP TABLE IF EXISTS `curso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `contato` (
+CREATE TABLE `curso` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(150) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `site` varchar(200) NOT NULL,
-  `mensagem` varchar(1000) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  `sigla` char(4) NOT NULL,
+  `descricao` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contato`
+-- Dumping data for table `curso`
 --
 
-LOCK TABLES `contato` WRITE;
-/*!40000 ALTER TABLE `contato` DISABLE KEYS */;
-INSERT INTO `contato` VALUES (1,'Duivilly','duivilly@gmail.com','http://duivilly.com','Inserir dados.'),(2,'Duivilly','duivilly@gmail.com','http://duivilly.com','PDO.');
-/*!40000 ALTER TABLE `contato` ENABLE KEYS */;
+LOCK TABLES `curso` WRITE;
+/*!40000 ALTER TABLE `curso` DISABLE KEYS */;
+INSERT INTO `curso` VALUES (1,'Sistemas de Informação','SI','Add!'),(2,'Ciência da Computação','CC','Add!');
+/*!40000 ALTER TABLE `curso` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `jogada`
+--
+
+DROP TABLE IF EXISTS `jogada`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `jogada` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `pontuacao` int(11) NOT NULL,
+  `data_hora` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `fk_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `jogada`
+--
+
+LOCK TABLES `jogada` WRITE;
+/*!40000 ALTER TABLE `jogada` DISABLE KEYS */;
+INSERT INTO `jogada` VALUES (2,3,100,'2017-06-28 18:31:18'),(3,3,300,'2017-06-28 18:39:19');
+/*!40000 ALTER TABLE `jogada` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -83,11 +110,14 @@ CREATE TABLE `user` (
   `status` smallint(6) NOT NULL DEFAULT '10',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
+  `id_curso` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `password_reset_token` (`password_reset_token`),
+  KEY `id_curso` (`id_curso`),
+  CONSTRAINT `fk_curso` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,6 +126,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (3,'Duivilly Brito','r3UfhJmSGDHf-Luy5mlW6xt234o4NJAb','$2y$13$K7lOY7Gy9/rCO8efp50/.eNHC.Yu64C0lTxX.tq/T83QlMF416Voy',NULL,'duivilly@gmail.com',10,1497544556,1497544556,1);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -108,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-05 17:22:55
+-- Dump completed on 2017-06-28 19:00:21
