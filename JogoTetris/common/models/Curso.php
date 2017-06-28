@@ -50,6 +50,11 @@ class Curso extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getTotalAlunosCurso(){
+        $totalAlunosCurso= User::find()->where('id_curso = '.$this->id)->count();
+        return $totalAlunosCurso;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

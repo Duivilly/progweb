@@ -30,7 +30,7 @@ class Jogada extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pontuacao'], 'required'],
+            [['id_user', 'pontuacao'], 'required'],
             [['id_user', 'pontuacao'], 'integer'],
             [['data_hora'], 'safe'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
@@ -44,23 +44,17 @@ class Jogada extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Usuário',
-            'pontuacao' => 'Pontuação',
-            'data_hora' => 'Data',
+            'id_user' => 'Id User',
+            'pontuacao' => 'Pontuacao',
+            'data_hora' => 'Data Hora',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getIdUser()
     {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
-    }
-
-    public function afterFind(){
-        parent::afterFind();
-        $this->id_user= $this->user->username;
-        $this->data_hora= date("d/m/Y H:m:s", strtotime($this->data_hora));
     }
 }

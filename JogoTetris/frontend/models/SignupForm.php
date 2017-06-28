@@ -34,6 +34,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['id_curso', 'required'],
+            ['id_curso', 'integer'],
         ];
     }
 

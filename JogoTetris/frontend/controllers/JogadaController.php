@@ -1,132 +1,24 @@
 <?php
 
 namespace frontend\controllers;
-
 use Yii;
-use common\models\Jogada;
-use common\models\JogadaSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-
-/**
- * JogadaController implements the CRUD actions for Jogada model.
- */
-class JogadaController extends Controller
+class JogadaController extends \yii\web\Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
+    public function actionPlay()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+        return $this->render('play');
     }
 
-    /**
-     * Lists all Jogada models.
-     * @return mixed
-     */
-    public function actionIndex()
+    public function actionRanking()
     {
-        $searchModel = new JogadaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('ranking');
     }
 
-    /**
-     * Displays a single Jogada model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
+    public function actionSave()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        #$pontuacao= Yii::app->request->post('pontuacao');
+        #$id_user= Yii::app->user->id;
+        #return $this->render('save');
     }
 
-    /**
-     * Creates a new Jogada model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Jogada();
-
-        // o ID do usuário corrente. Null se o usuário não estiver autenticado.
-        $id_user= Yii::$app->user->id;
-        $model->id_user= $id_user;
-
-        //format date before save
-        date_default_timezone_set('America/Manaus');
-        $model->data_hora= date('Y-m-d H:i:s');
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Updates an existing Jogada model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Deletes an existing Jogada model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Jogada model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Jogada the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Jogada::findOne($id)) !== null) {
-            return $model;
-        } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
 }

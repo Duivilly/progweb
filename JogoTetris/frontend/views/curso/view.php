@@ -32,6 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'nome',
             'sigla',
             'descricao:ntext',
+            [
+                'attribute' => 'totalAlunosCurso',
+                'label'=> 'Número de Alunos'
+            ]
         ],
     ]) ?>
 
