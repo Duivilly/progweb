@@ -28,20 +28,33 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Home',
+        'brandLabel' => 'Tetris',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        //['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Usuários', 'url' => ['/user/index']],
-        ['label' => 'Jogadas', 'url' => ['/jogada/ranking']],
-        ['label' => 'Cursos', 'url' => ['/curso/index']],
-        ['label' => 'Contato', 'url' => ['/site/contact']],
-        ['label' => 'Sobre', 'url' => ['/site/about']],
-    ];
+
+    if (!Yii::$app->user->isGuest) {
+        $menuItems = [
+            //['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Usuários', 'url' => ['/user/index']],
+            ['label' => 'Jogadas', 'url' => ['/jogada/ranking']],
+            ['label' => 'Cursos', 'url' => ['/curso/index']],
+            ['label' => 'Contato', 'url' => ['/site/contact']],
+            ['label' => 'Sobre', 'url' => ['/site/about']],
+        ];
+    }else{
+        $menuItems = [
+            //['label' => 'Home', 'url' => ['/site/index']],
+            //['label' => 'Usuários', 'url' => ['/user/index']],
+            //['label' => 'Jogadas', 'url' => ['/jogada/ranking']],
+            //['label' => 'Cursos', 'url' => ['/curso/index']],
+            ['label' => 'Contato', 'url' => ['/site/contact']],
+            ['label' => 'Sobre', 'url' => ['/site/about']],
+        ];
+    }
+    
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Criar Conta', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
