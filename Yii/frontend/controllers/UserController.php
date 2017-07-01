@@ -8,6 +8,7 @@ use common\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\LoginForm;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -35,6 +36,17 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            $model= new LoginForm();
+            if ($model->load(Yii::$app->request->post()) && $model->login()) {
+                return $this->goBack();
+            } else {
+                return $this->render('//site/login', [
+                    'model' => $model,
+                ]);
+            }
+        }
+
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

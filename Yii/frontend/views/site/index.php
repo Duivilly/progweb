@@ -5,5 +5,5 @@ use yii\helpers\Html;
 $this->title = 'Jogo Tetris';
 ?>
 
-<?= Html::img('@web/index.jpeg', ['width'=>'400']) ?>
+<?= Html::img('@web/index.jpeg') ?>
 <?= Html::a('Iniciar Jogo', ['jogada/play'], ['class' => 'btn btn-success']) ?>
