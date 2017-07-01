@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 use Yii;
+use common\models\JogadaSearch;
 use common\models\Jogada;
 
 class JogadaController extends \yii\web\Controller
@@ -12,7 +13,13 @@ class JogadaController extends \yii\web\Controller
 
     public function actionRanking()
     {
-        return $this->render('ranking');
+        $searchModel= new JogadaSearch();
+        $dataProvider= $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('ranking', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionSave()

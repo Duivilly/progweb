@@ -44,11 +44,13 @@ class Jogada extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_user' => 'Id User',
-            'pontuacao' => 'Pontuacao',
-            'data_hora' => 'Data Hora',
+            'id_user' => 'Jogador',
+            'pontuacao' => 'Pontuação',
+            'data_hora' => 'Data',
         ];
     }
+
+    #public $idUser;
 
     /**
      * @return \yii\db\ActiveQuery
@@ -56,5 +58,17 @@ class Jogada extends \yii\db\ActiveRecord
     public function getIdUser()
     {
         return $this->hasOne(User::className(), ['id' => 'id_user']);
+    }
+
+    public function afterFind(){
+        parent::afterFind();
+        $this->id_user= $this->idUser->username;
+        $this->data_hora= date('d/m/Y H:s', strtotime($this->data_hora));
+    }
+
+    #todas as jogas ordenadas pela maior pontuação
+    public function getRanking(){
+        $jogadas= $this->find()->orderBy(['pontuacao'=>SORT_DESC])->all();
+        return $jogadas;
     }
 }

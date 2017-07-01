@@ -946,7 +946,7 @@ $this->registerJs("
 
     function informacoes(){
         infor= document.createElement('div');
-        infor.style.width= '290px';
+        infor.style.width= '240px';
         infor.style.height= '50px';
         infor.style.backgroundColor= 'yellow';
         if(gameover == true){
